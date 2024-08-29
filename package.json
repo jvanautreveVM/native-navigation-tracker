@@ -6,8 +6,7 @@
   "copyright": "2020 Mendix Technology BV",
   "author": "Eric",
   "config": {
-    "widgetPath": "/Volumes/[C] Windows 10/Mendix/Mindbody/PendoTest-main//widgets",
-    "projectPath": "/Volumes/[C] Windows 10/Mendix/Mindbody/PendoTest-main//"
+       "projectPath": "./tests/testProject/"
   },
   "packagePath": "mendix",
   "scripts": {
@@ -21,10 +20,12 @@
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Eric/pendopagecontainer/issues"
+	"url": "https://github.com/tieniber/native-navigation-tracker/issues"
   },
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^8.10.1"
+    "@mendix/pluggable-widgets-tools": "^10.12.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@react-navigation/native": "^6.1.6"
+  }
 }

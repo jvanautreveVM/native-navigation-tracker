@@ -1,5 +1,5 @@
 import { Component, createElement } from "react";
-import { withNavigation, withNavigationFocus } from "react-navigation";
+import { useIsFocused, useRoute } from "@react-navigation/native";
 
 class NativeNavTrackerUnwrapped extends Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class NativeNavTrackerUnwrapped extends Component {
     }
 
     _tryFireAction() {
-        const { navigation, onFocusAction, pageNameAttr } = this.props;
+        const { onFocusAction, pageNameAttr, routes } = this.props;
         if (
             onFocusAction &&
             onFocusAction.canExecute &&
@@ -39,13 +39,19 @@ class NativeNavTrackerUnwrapped extends Component {
             this.setState({
                 shouldFireAction: false
             });
-            if (pageNameAttr) {
-                pageNameAttr.setValue(navigation.state.params.pageName);
+            if (pageNameAttr && routes) {
+                //pageNameAttr.setValue(routes.params.title);
+                pageNameAttr.setValue(routes.params.pageName);
+              
             }
             onFocusAction.execute();
         }
     }
 }
 
-const NativeNavTracker = withNavigation(withNavigationFocus(NativeNavTrackerUnwrapped));
-export { NativeNavTracker };
+export function NativeNavTracker(props) {
+    const isFocused = useIsFocused();
+    //const navigationContxt = useContext(NavigationContext);
+    const curRoute = useRoute();
+    return <NativeNavTrackerUnwrapped {...props} isFocused={isFocused}  routes={curRoute} />;
+}
